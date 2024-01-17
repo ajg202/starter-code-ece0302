@@ -3,33 +3,33 @@
 
 #include "abstract_bag.hpp"
 
-template<typename T> class Bag{
+template<typename T>
+class Bag : public AbstractBag<T> {
 public:
 
   Bag();
   
   ~Bag();
 
-  std::size_t getCurrentSize() const;
+  std::size_t getCurrentSize() const override;
 
-  bool isEmpty() const;
+  bool isEmpty() const override;
 
-  bool add(const T& entry);
+  bool add(const T& entry) override;
 
-  bool remove(const T& entry);
+  bool remove(const T& entry) override;
 
-  void clear();
+  void clear() override;
 
-  std::size_t getFrequencyOf(const T& entry) const;
+  std::size_t getFrequencyOf(const T& entry) const override;
 
-  bool contains(const T& entry) const;
+  bool contains(const T& entry) const override;
 
   static const std::size_t MAXSIZE = 100;
   
 private:
   // implementation using fixed automatic storage
   std::size_t size;
-  
   T data[MAXSIZE];
 };
 
