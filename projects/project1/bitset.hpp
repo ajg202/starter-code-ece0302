@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string>
+#include <vector>
+using namespace std;
 
 class Bitset{
 public:
@@ -44,6 +46,8 @@ public:
   std::string asString() const;
 
 private:
+  intmax_t bitsize;
+  int *bit;
 
   // TODO
 };
