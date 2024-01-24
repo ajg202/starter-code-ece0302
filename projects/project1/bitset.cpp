@@ -1,41 +1,29 @@
 #include "bitset.hpp"
 
-Bitset::Bitset() : bitsize(0), bit(new int(bitsize)) {
-    // TODO
-}
-
-Bitset::Bitset(intmax_t size) : bitsize(size), bit(new int (bitsize)){
-    for (size_t i=0;i<bitsize;i++){
+Bitset::Bitset() : bitsize(8), bit(new int[bitsize]) {
+    for (size_t i = 0; i < bitsize; i++) {
         bit[i] = 0;
     }
-    // TODO
 }
 
-Bitset::Bitset(const std::string & value) {
-    for (size_t i=0;i<bitsize;i++){
-        if (value[i] != '0' && value[i] != '1'){
-            exit(1);
-        }
-        else {
-            bit[i] = value[i] - '0';
-        }
+Bitset::Bitset(intmax_t size) : bitsize(size), bit(new int[bitsize]) {
+    for (size_t i = 0; i < bitsize; i++) {
+        bit[i] = 0;
     }
-    // TODO
+}
+
+Bitset::Bitset(const std::string &value) : bitsize(value.size()), bit(new int[bitsize]) {
+	for (size_t i = 0; i < bitsize; i++) {
+			bit[i] = value[i] - '0';
+	}
 }
 
 Bitset::~Bitset() {
-    // TODO
+    delete[] bit;
 }
 
-// TODO: other methods
-
-bool Bitset::test(intmax_t index){
-    if (bitsize<=0){
-        return 0;
-    }
-    else{
-        return 1;
-    }
+bool Bitset::test(intmax_t index) {
+    return (bit[index]==1);
 }
 
 intmax_t Bitset::size() const {
@@ -43,31 +31,41 @@ intmax_t Bitset::size() const {
 }
 
 bool Bitset::good() const {
-    return bitsize > 0;
+    if (bitsize>0){
+		for (size_t i = 0; i < bitsize; i++) {
+            if (bit[i] != 0 && bit[i] != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
-string Bitset::asString()const{
+string Bitset::asString() const {
     string value;
-    for (size_t i = 0; i < bitsize; i++) {
-        value += to_string(bit[i]);
+    for (int i = 0; i < bitsize; i++) {
+        value = value+to_string(bit[i]);
     }
     return value;
 }
 
 void Bitset::toggle(intmax_t index) {
-    if (index >= 0 && static_cast<size_t>(index) < bitsize) {
+    if (index >= 0 && index < bitsize) {
         bit[index] = 1 - bit[index];
     }
 }
 
 void Bitset::set(intmax_t index) {
-    if (index >= 0 && static_cast<size_t>(index) < bitsize) {
+    if (index >= 0 && index < bitsize) {
         bit[index] = 1;
     }
 }
 
 void Bitset::reset(intmax_t index) {
-    if (index >= 0 && static_cast<size_t>(index) < bitsize) {
+    if (index >= 0 && index < bitsize) {
         bit[index] = 0;
     }
 }
