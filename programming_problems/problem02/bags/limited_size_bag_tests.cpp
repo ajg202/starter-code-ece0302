@@ -18,3 +18,52 @@ TEST_CASE("Calling all public members", "[LimitedSizeBag]"){
   b.contains(0);
 
 }
+
+TEST_CASE("Different Numbers", "[LimitedSizeBag]"){
+  LimitedSizeBag<int> b;
+
+  b.add(10);
+  b.add(20);
+  b.getFrequencyOf(20);
+  b.remove(20);
+  b.isEmpty();
+  b.getCurrentSize();
+  b.getFrequencyOf(10);
+  b.clear();
+  b.getCurrentSize();;
+  b.contains(0);
+}
+
+TEST_CASE("Negative Numbers", "[LimitedSizeBag]"){
+  LimitedSizeBag<int> b;
+
+  b.add(-10);
+  b.add(0);
+  b.add(10);
+  b.add(-20);
+  b.getFrequencyOf(-10);
+  b.remove(0);
+  b.isEmpty();
+  b.getCurrentSize();
+  b.getFrequencyOf(0);
+  b.clear();
+  b.getCurrentSize();;
+  b.contains(-10);
+}
+
+TEST_CASE("Over Numbers", "[LimitedSizeBag]"){
+  LimitedSizeBag<int> b;
+
+  b.add(1000);
+  b.add(0);
+  b.add(10);
+  b.add(-300);
+  b.getFrequencyOf(1000);
+  b.remove(0);
+  b.isEmpty();
+  b.getCurrentSize();
+  b.getFrequencyOf(0);
+  b.clear();
+  b.getCurrentSize();;
+  b.contains(-300);
+}

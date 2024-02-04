@@ -44,7 +44,8 @@ public:
   bool contains(const T& item) const;
 
 private:
-
+  int bagSize;
+  T* items;
   // TODO
 };
 

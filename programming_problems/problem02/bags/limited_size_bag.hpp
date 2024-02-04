@@ -35,7 +35,8 @@ public:
   static const std::size_t maxsize = 100;
 
 private:
-
+  int bagSize;
+  T* items;
   // TODO
 };
 

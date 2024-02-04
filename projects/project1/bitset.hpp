@@ -52,6 +52,8 @@ private:
   intmax_t bitsize;
   //value used for the array
   int *bit;
+  //
+  mutable bool validity;
 };
 
 #endif
