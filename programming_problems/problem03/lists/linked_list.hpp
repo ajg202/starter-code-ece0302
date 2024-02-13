@@ -46,6 +46,10 @@ public:
 
 private:
 
+    Node<T>* head;
+    std::size_t itemCount;
+
+    Node<T>* getNodeAt(std::size_t position) const;
   //TODO
   
 };

@@ -45,7 +45,8 @@ public:
   void setEntry(std::size_t position, const T& newValue);
 
 private:
-
+  intmax_t arrSize;
+  T* arr;
   // TODO
   
 };
