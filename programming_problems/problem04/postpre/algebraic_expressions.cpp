@@ -7,6 +7,9 @@ using std::string;
 
 #include "algebraic_expressions.hpp"
 
+#include <stack>
+#include <vector>
+
 bool isoperator(char ch) {
   return ((ch == '+') || (ch == '-') || (ch == '/') || (ch == '*'));
 }
@@ -41,8 +44,34 @@ bool isPost(string s) {
   return (firstChar == 0);
 }
 
-void convert(string &postfix, string &prefix) {
+void convert(std::string &postfix, std::string &prefix) {
+  std::stack<std::string, std::vector<std::string>> stack;
 
-  // TODO
-  
+
+  for (std::string::iterator it = postfix.begin(); it != postfix.end(); ++it) {
+    char ch = *it;
+    if (isalpha(ch)) {
+      stack.push(std::string(1, ch));
+    } else if (isoperator(ch)) {
+      if (stack.size() < 2) {
+        return;
+      }
+      std::string operand2 = stack.top();
+      stack.pop();
+      std::string operand1 = stack.top();
+      stack.pop();
+
+      std::string newOperand = ch + operand1 + operand2;
+
+      stack.push(newOperand);
+    } else {
+      return;
+    }
+  }
+
+  if (!stack.empty()) {
+    prefix = stack.top();
+  } else {
+    return;
+  }
 }

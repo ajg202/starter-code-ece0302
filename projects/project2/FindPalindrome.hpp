@@ -9,7 +9,10 @@ class FindPalindrome{
 private:
 	// private stuff that you define and implement goes here...
 	
-	// ...
+    std::vector<std::string> candidateStringVector;
+    std::vector<std::string> currentStringVector;
+	std::vector<std::vector<std::string>> palindromes;
+	int numPalindromes;
 	
 	// private stuff that you are given or is specified in the project
 	// description...
